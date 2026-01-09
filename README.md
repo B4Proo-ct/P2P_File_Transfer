@@ -96,7 +96,7 @@ python -m uv run manage.py migrate
 
 ### 4️⃣ Start the development server
 ```bash
-uv run python manage.py runserver 0.0.0.0:8000
+python -m uv run manage.py runserver 0.0.0.0:8000
 ```
 
 ### 5️⃣ Open in browser
