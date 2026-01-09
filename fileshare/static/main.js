@@ -17,7 +17,8 @@ function connect() {
     socket.onopen = socket.onclose = socket.onerror = socket.onmessage = null;
     socket.close();
   }
-  const uidParam = sessionUid ? `&uid=${sessionUid}` : "";
+  const query = sessionUid ? `?uid=${sessionUid}` : "";
+  socket = new WebSocket(`${window.location.protocol === "https:" ? "wss" : "ws"}://${window.location.host}/ws/socket-server/${query}`);
   socket.binaryType = "arraybuffer";
 
   socket.onopen = () => {
@@ -232,11 +233,11 @@ async function initWebRTC(targetId, isOfferer = false) {
 function setupDataChannel(targetId, dc) {
   dataChannels[targetId] = dc;
   dc.binaryType = "arraybuffer";
-  dc.bufferedAmountLowThreshold = 8 * 1024 * 1024; 
+  dc.bufferedAmountLowThreshold = 4 * 1024 * 1024; 
   
   dc.onopen = () => {
     setTimeout(() => {
-      for (let i = 0; i < 12; i++) refillBuffer(targetId); 
+      for (let i = 0; i < 12; i++) refillBuffer(targetId);
       for (let fileId in outgoingFiles) {
         const t = outgoingFiles[fileId];
         if (t.targetId === targetId && t.startTime === 0 && t.waitingForWebRTC) {
@@ -244,7 +245,7 @@ function setupDataChannel(targetId, dc) {
           startSendingFile(fileId);
         }
       }
-    }, 10);
+    }, 100);
   };
   dc.onbufferedamountlow = () => { for (let i = 0; i < 6; i++) refillBuffer(targetId); };
   dc.onclose = () => {
@@ -260,12 +261,11 @@ function setupDataChannel(targetId, dc) {
 }
 
 async function refillBuffer(targetId) {
-  const active = activeRefills[targetId] || 0;
-  if (active >= 12) return; 
+  if ((activeRefills[targetId] || 0) >= 12) return; 
   const dc = dataChannels[targetId];
   if (!dc || dc.readyState !== "open") return;
 
-  activeRefills[targetId] = active + 1;
+  activeRefills[targetId] = (activeRefills[targetId] || 0) + 1;
   try {
     for (let fileId in outgoingFiles) {
       const t = outgoingFiles[fileId];
@@ -301,33 +301,18 @@ function updateMetrics(bytes) {
 
 function calculateThroughput() {
   const now = Date.now(), history = transferMetrics.history;
+  if (!history.length || (history.length > 0 && (now - history[0].time < 500))) {
+    transferMetrics.throughput = 0; return;
+  }
   transferMetrics.history = history.filter(h => h.time > (now - MEASURE_WINDOW));
   const updatedHistory = transferMetrics.history;
-  
-  if (!updatedHistory.length) {
-    transferMetrics.throughput = 0;
-    return;
-  }
-  
-  const totalBytes = updatedHistory.reduce((s, h) => s + h.bytes, 0);
-  const timeSpan = Math.max((now - updatedHistory[0].time) / 1000, 0.1);
-  transferMetrics.throughput = totalBytes / timeSpan;
+  if (!updatedHistory.length) return;
+  transferMetrics.throughput = updatedHistory.reduce((s, h) => s + h.bytes, 0) / Math.max((now - updatedHistory[0].time) / 1000, 0.1);
 }
 
 setInterval(() => {
-  const isActive = Object.keys(outgoingFiles).length || Object.keys(incomingFiles).length || currentUploadXHR;
-  if (isActive) {
+  if (Object.keys(outgoingFiles).length || Object.keys(incomingFiles).length || currentUploadXHR) {
     calculateThroughput();
-    for (let fileId in outgoingFiles) {
-      const t = outgoingFiles[fileId];
-      if (!t.cancelled && t.startTime > 0) {
-        const dc = dataChannels[t.targetId];
-        if (dc && dc.readyState === "open" && dc.bufferedAmount < 1024 * 1024) {
-          refillBuffer(t.targetId);
-        }
-      }
-    }
-
     const speedEl = document.getElementById("transferSpeed");
     if (speedEl) speedEl.textContent = formatSpeed(transferMetrics.throughput);
   } else {
@@ -743,7 +728,8 @@ function initUploadShare() {
      document.getElementById("visibilitySettingContainer")?.classList.toggle("d-none", !isP2P);
      document.getElementById("expirySettingContainer")?.classList.toggle("d-none", isP2P);
      if (!isP2P) renderMyFiles();
- 
+     
+     // Update radio button state
      const radioToCheck = document.querySelector(`input[name="settingModeSelect"][value="${mode}"]`);
      if (radioToCheck) radioToCheck.checked = true;
   }
@@ -769,6 +755,7 @@ async function handleFileUpload() {
   const file = document.getElementById("fileInput").files[0];
   if (!file) { alert("Please select a file first."); return; }
   
+  // Check for duplicates BEFORE uploading
   let files = JSON.parse(localStorage.getItem('myFiles') || '[]');
   const isDuplicate = files.some(f => f.name === file.name);
   if (isDuplicate) {
