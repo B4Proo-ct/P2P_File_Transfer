@@ -1,108 +1,119 @@
+# 🔗 P2P File Transfer (Hybrid)
+
 <p align="center">
   <img src="fileshare/static/favicon.png" width="200" alt="Logo Icon"/><br>
-  A P2P file transfer tool using Django Channels.<br>
-  Written in Python/Django
+  A secure, fast, and browser-based file sharing system built using Python & Django.  
+  It supports direct peer-to-peer transfer and a backup Upload & Share mode, so file sharing always works — no matter the network.
 </p>
 
-## Overview
+---
 
-`P2P File Transfer` is a Django-based tool for **securely transferring files between devices**, similar to [ShareDrop](https://github.com/szimek/sharedrop). It allows users to send and receive files directly over the network with **built-in encryption** for enhanced privacy.
+## 📌 What is this project?
 
-## How It Works
+**P2P File Transfer** allows users to share files in two smart ways:
 
-Your data is protected using **AES 256-bit encryption**, making the file transfer process secure and reliable.
+### 🔁 1. Peer-to-Peer (P2P) Mode
+- Files are sent **directly from sender to receiver**
+- Works best on **same Wi-Fi / local network**
+- Extremely fast ⚡
+- No server storage involved
+- End-to-End Encrypted
 
-### Sender Process
+### ☁️ 2. Upload & Share Mode
+- Used when P2P is not possible (different networks / offline user)
+- File is **encrypted and uploaded temporarily**
+- A **secure shareable link** is generated
+- File is **auto-deleted after a short time**
 
-1. The file is first `byte-encoded` (client-side).
-2. The encoded file is then `encrypted` using AES 256-bit encryption (server-side).
-3. The encrypted file is `transferred` to the recipient (still encrypted).
+This **hybrid approach** ensures the transfer never fails.
 
-### Receiver Process
+---
 
-1. The received file is `decrypted` using the same encryption key (server-side).
-2. The decrypted data is `byte-decoded` (client-side).
-3. The original file is `reconstructed` and made available for download.
+## 🧠 Why is this useful? (Simple words)
 
-This way only the intended recipient can access the file throughout the transfer.
+- 🚫 No need for Google Drive, WhatsApp, or Email
+- ⚡ Much faster than cloud apps on local Wi-Fi
+- 🔐 Files stay private with encryption
+- 🌍 Works on any modern browser (mobile & desktop)
+- 🧪 Great real-world project for learning networking concepts
 
-## Purpose
+---
 
-The primary goal of this project is to **provide an open-source application that anyone can use and learn from**.
+## ✨ Features
 
-If you find this project interesting, helpful, or inspiring, please consider giving a `star`, `following`, or even `donating`.
+### 🔄 Transfer Modes
+- ✅ **Live P2P Transfer** (WebRTC based)
+- ✅ **Upload & Share** fallback mode
 
-## Setup for Local Development
+### 🔐 Privacy & Security
+- End-to-End Encryption (E2EE) for P2P transfers
+- Encrypted storage for uploaded files
+- Private rooms using unique Room IDs
+- No account or name required
 
-### Install uv
+### 📁 File Handling
+- Chunk-based transfer (handles large files safely)
+- Real-time progress bar & speed indicator
+- Auto cleanup of uploaded files
 
+### 🖥️ User Interface
+- Dark mode with modern UI
+- Mobile & desktop responsive
+- Separate tabs for Send / Receive / Settings
+
+---
+
+## 🧩 Tech Stack
+
+- Backend: Django (Python)
+- Realtime: Django Channels + WebSockets
+- P2P: WebRTC
+- Encryption: Web Crypto API / Fernet
+- Frontend: Vanilla JavaScript + CSS
+
+---
+
+## ⚙️ Run Locally
+
+### 1️⃣ Clone the repository
 ```bash
+git clone https://github.com/ShivamXD6/P2P_File_Transfer
 cd path/to/root/directory
 pip install uv
 ```
 
-### Create Enviroment Variable file
-
+### 2️⃣ Rename env.example to .env and modify it
 ```bash
-touch .env
-nano .env
-```
-
-Add the following (adjust as needed):
-
-```ini
 SECRET_KEY="example_secret_key"  # https://stackoverflow.com/a/57678930
 ENCRYPTION_KEY="example_encryption_key"  # https://cryptography.io/en/latest/fernet/#cryptography.fernet.Fernet
 DEBUG=True  # For development
 ```
 
-Save changes and close the file.
-
-### Migrate Database (Optional)
-
+### 3️⃣ Run database migrations
 ```bash
-uv run manage.py migrate
+python -m uv run manage.py migrate
 ```
 
-### Run Django Server
-
+### 4️⃣ Start the development server
 ```bash
-uv run manage.py runserver
+uv run python manage.py runserver 0.0.0.0:8000
 ```
 
-Access web application at `http://127.0.0.1:8000/` or `http://localhost:8000/`. Open two browser windows to transfer files between users.
-
-## Run Tests
-
+### 5️⃣ Open in browser
 ```bash
-uv run manage.py test
+localhost:8000
 ```
 
-## Demo Image
+---
 
-![fileshare](https://github.com/user-attachments/assets/df026073-42c8-43f9-92ce-b57b0e9a01b6)
+## 🖼️ Screenshots
+### 🔁 Peer-to-Peer Transfer Mode
+<img width="301" height="477" alt="{6C1B3FF7-6A60-4CEC-B15C-6CF3F4CF6F36}" src="https://github.com/user-attachments/assets/e7d9ce36-71ea-4889-b5f3-a06fe2cf52af" />
+<img width="304" height="363" alt="{7FE0E4E5-2C20-452C-8EF2-5D3089B1BC14}" src="https://github.com/user-attachments/assets/ce7aa9db-65fb-4fa1-8055-f59ee87885f0" />
+<img width="304" height="360" alt="{3976A217-B038-489E-BAC1-12B88D696D86}" src="https://github.com/user-attachments/assets/57578e85-57f3-4b0f-972b-dde701f73087" />
 
-## Demo Videos
 
-### User 1
-
-<https://github.com/user-attachments/assets/10552c38-0d08-4040-9fb5-e9093528b5ef>
-
-### User 2
-
-<https://github.com/user-attachments/assets/f07322d1-35b1-4569-b496-c61578b32e1b>
-
-## Contributing Guidelines
-
-### Pull Requests
-
-- **Simplicity**: Keep changes focused and easy to review.
-- **Libraries**: Avoid adding non-standard libraries unless discussed via an issue.
-- **Testing**: Ensure code runs error-free, passes all tests, and meets coding standards.
-
-### Bug Reports
-
-- Report bugs via GitHub Issues.
-- Submit pull requests via GitHub Pull Requests.
-
-Thank you for supporting P2P File Transfer!
+### ☁️ Upload & Share Mode
+<img width="293" height="358" alt="{19546530-5641-4BF2-879E-F04CC7D5E165}" src="https://github.com/user-attachments/assets/83d15b82-b846-427d-bd69-7b14b944968d" />
+<img width="309" height="271" alt="{5A1CD1E1-4328-4D3D-8CE5-D99A7D139F6D}" src="https://github.com/user-attachments/assets/df227264-e5a3-4d99-a65c-521cd45f54fc" />
+<img width="296" height="374" alt="{081EA912-86C4-40AB-B901-D18868C4852B}" src="https://github.com/user-attachments/assets/89ea7582-a361-48a1-9761-c4f17c1db427" />
