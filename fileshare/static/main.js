@@ -18,7 +18,6 @@ function connect() {
     socket.close();
   }
   const uidParam = sessionUid ? `&uid=${sessionUid}` : "";
-  socket = new WebSocket(`${window.location.protocol === "https:" ? "wss" : "ws"}://${window.location.host}/ws/socket-server/?ngrok-skip-browser-warning=true${uidParam}`);
   socket.binaryType = "arraybuffer";
 
   socket.onopen = () => {
